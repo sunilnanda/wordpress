@@ -4,7 +4,7 @@
 ## Table of Contents
 
 - [Disable wordpress comments](#disable-wordpress-comments)
-- [Yoast SEO - Allow empty categories in Sitemap](#yoast-seo-allow-empty-categories-in-sitemap)
+- [Yoast SEO - Allow empty categories in Sitemap](#yoast-seo---allow-empty-categories-in-sitemap)
 
 ## Disable wordpress comments
 
