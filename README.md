@@ -4,7 +4,10 @@
 ## Table of Contents
 
 - [Disable wordpress comments](#disable-wordpress-comments)
-- [Yoast SEO - Allow empty categories in Sitemap](#yoast-seo---allow-empty-categories-in-sitemap)
+- [Yoast SEO](#yoast-seo)
+    - [Allow empty categories in Sitemap](#allow-empty-categories-in-sitemap)
+- [Advanced Custom Fields](#advanced-custom-fields)
+    - [Adding Backslashes to Quotes](#adding-backslashes-to-quotes)
 
 ## Disable wordpress comments
 
@@ -63,7 +66,9 @@ TRUNCATE wp_comments;
 >NOTE: Use these queries carefully with woocommerce sites. You will loose order related comments as well. (Receipt Number, Payment Status etc)
 
 
-## Yoast SEO - Allow empty categories in Sitemap
+## Yoast SEO
+
+### Allow empty categories in Sitemap
 
 By default, [Yoast SEO plugin](https://en-au.wordpress.org/plugins/wordpress-seo/) exclude empty taxonomy from sitemap. If you want to include them in sitemap put following code in your `functions.php`
 
@@ -72,3 +77,28 @@ By default, [Yoast SEO plugin](https://en-au.wordpress.org/plugins/wordpress-seo
 add_filter( 'wpseo_sitemap_exclude_empty_terms', function() { return false; } ); 
 ```
 
+## Advanced Custom Fields plugin
+
+### Adding Backslashes to Quotes
+[Advanced Custom Fields plugin](https://wordpress.org/plugins/advanced-custom-fields/) adding Backslashes to Quotes. A solution to this [bug](https://support.advancedcustomfields.com/forums/topic/5-7-1-1-adding-backslashes-to-quotes/) has been listed on the ACF support site.
+
+>Note: The issue was seen on ACF version 5.7.11
+
+The issue can be resolved using hooks **acf/update_value** in `functions.php`
+
+```
+add_filter( 'acf/update_value/type=textarea', function( $value, $post_id, $field ) { 
+    $value = implode("",explode("\\",$value)); // This will remove multiple backslashes (if found)
+    return stripslashes(trim($value));
+}, 10, 3 ); 
+```
+
+To handle wysiwyg inputs use following code:
+``` 
+add_filter( 'acf/update_value/type=wysiwyg', function( $value, $post_id, $field ) { 
+    $value = implode("",explode("\\",$value)); // This will remove multiple backslashes (if found)
+    return stripslashes(trim($value));
+}, 10, 3 ); 
+```
+
+See full documentation about these hooks [here](https://www.advancedcustomfields.com/resources/acf-update_value/)
