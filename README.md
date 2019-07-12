@@ -8,7 +8,7 @@
 
 ## Disable wordpress comments
 
-Copy the code from function.php and place it in the end of your `function.php`
+Copy the code from functions.php and place it in the end of your `functions.php`
 
 ```
 add_action('admin_init', function () {
@@ -65,7 +65,7 @@ TRUNCATE wp_comments;
 
 ## Yoast SEO - Allow empty categories in Sitemap
 
-By default, [Yoast SEO plugin](https://en-au.wordpress.org/plugins/wordpress-seo/) exclude empty taxonomy from sitemap. If you want to include them in sitemap put following code in your `function.php`
+By default, [Yoast SEO plugin](https://en-au.wordpress.org/plugins/wordpress-seo/) exclude empty taxonomy from sitemap. If you want to include them in sitemap put following code in your `functions.php`
 
 
 ```
