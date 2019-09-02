@@ -6,8 +6,10 @@
 - [Disable wordpress comments](#disable-wordpress-comments)
 - [Yoast SEO](#yoast-seo)
     - [Allow empty categories in Sitemap](#allow-empty-categories-in-sitemap)
-- [Advanced Custom Fields](#advanced-custom-fields)
+- [Advanced Custom Fields](#advanced-custom-fields-plugin)
     - [Adding Backslashes to Quotes](#adding-backslashes-to-quotes)
+- [WooCommerce Tips/Usefull Hooks](#woocommerce-tips-usefull-hooks)
+    - [Receive a CC/BCC of each email sent by WooCommerce](#receive-a-cc-bcc-of-each-email-sent-by-woocommerce)
 
 ## Disable wordpress comments
 
@@ -102,3 +104,21 @@ add_filter( 'acf/update_value/type=wysiwyg', function( $value, $post_id, $field 
 ```
 
 See full documentation about these hooks [here](https://www.advancedcustomfields.com/resources/acf-update_value/)
+
+## WooCommerce Tips/Usefull Hooks
+
+### Receive a CC/BCC of each email sent by WooCommerce
+
+To get a copy of each invoice sent to the customer by email, you can add your email address as BCC for all WooCommerce emails. For example:
+
+``` 
+function woocommerce_email_headers_handler( $headers, $object ) {
+    $headers = array( 
+            'Bcc: Developer <developer@company.com.au>' ."\r\n"
+        );
+    return $headers;
+}
+add_filter( 'woocommerce_email_headers', 'woocommerce_email_headers_handler', 10, 2 );
+``` 
+
+See full documentation about this hook [here](http://hookr.io/filters/woocommerce_email_headers/)
