@@ -8,8 +8,8 @@
     - [Allow empty categories in Sitemap](#allow-empty-categories-in-sitemap)
 - [Advanced Custom Fields](#advanced-custom-fields-plugin)
     - [Adding Backslashes to Quotes](#adding-backslashes-to-quotes)
-- [WooCommerce Tips/Usefull Hooks](#woocommerce-tips-usefull-hooks)
-    - [Receive a CC/BCC of each email sent by WooCommerce](#receive-a-cc-bcc-of-each-email-sent-by-woocommerce)
+- [WooCommerce Tips/Usefull Hooks](#woocommerce-tipsusefull-hooks)
+    - [Receive CC/BCC of each email sent by WooCommerce](#receive-ccbcc-of-each-email-sent-by-woocommerce)
 
 ## Disable wordpress comments
 
@@ -107,9 +107,9 @@ See full documentation about these hooks [here](https://www.advancedcustomfields
 
 ## WooCommerce Tips/Usefull Hooks
 
-### Receive a CC/BCC of each email sent by WooCommerce
+### Receive CC/BCC of each email sent by WooCommerce
 
-To get a copy of each invoice sent to the customer by email, you can add your email address as BCC for all WooCommerce emails. For example:
+To get a copy of each WooCommerce email, you can add your email address as BCC for all WooCommerce emails. For example:
 
 ``` 
 function woocommerce_email_headers_handler( $headers, $object ) {
